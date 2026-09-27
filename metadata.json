@@ -1,0 +1,6 @@
+{
+  "name": "Planificator Financiar",
+  "description": "O aplicație minimalistă pentru organizarea bugetului personal și prognoza cheltuielilor pe intervale de la o lună până la 5 ani, cu design modern pe fundal negru și contururi albe.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

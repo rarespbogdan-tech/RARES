@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Custom minimal scrollbar to fit black and white theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffffff33;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff66;
+}
+
+/* Pulse animation for key highlight items */
+@keyframes border-pulse {
+  0%, 100% {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.animate-border-pulse {
+  animation: border-pulse 2s infinite;
+}
+
+/* Print optimizations for clean, black-and-white paper layout */
+@media print {
+  html, body {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif !important;
+  }
+
+  /* Hide navigation, sidebars, interactive components, footer and buttons */
+  #main-header,
+  #utility-bar,
+  #presets-container,
+  #inputs-layout,
+  #action-trigger-container,
+  #premium-inline-container,
+  #premium-modal-backdrop,
+  #premium-analysis-block,
+  .explanation-box,
+  footer,
+  button,
+  .no-print,
+  .btn,
+  [id^="btn-"],
+  [id$="-form"],
+  [id$="-card"]:not(#projection-results-block *) {
+    display: none !important;
+  }
+
+  /* Remove absolute sizing and dark bg wraps */
+  #app-root-view {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #app-root-view > div {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Target Projection Results block */
+  #projection-results-block {
+    display: block !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 10px !important;
+    margin: 0 !important;
+    border: none !important;
+  }
+
+  /* Ensure all nested typography is black */
+  #projection-results-block *,
+  #projection-results-block label,
+  #projection-results-block p,
+  #projection-results-block span,
+  #projection-results-block text,
+  #projection-results-block div {
+    color: #000000 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: #000000 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Draw clean solid borders instead of dim borders */
+  #projection-results-block .border,
+  #projection-results-block .border-white,
+  #projection-results-block .border-white\/10,
+  #projection-results-block .border-white\/20 {
+    border: 1px solid #000000 !important;
+  }
+
+  /* Highlight negative amounts with simple light grey bg or explicit sign */
+  .text-red-400 {
+    color: #000000 !important;
+    font-weight: 800 !important;
+  }
+
+  /* Adjust SVG chart lines to be dark and crisp */
+  #svg-growth-chart {
+    border: 1px solid #000000 !important;
+    max-height: 220px !important;
+  }
+
+  #svg-growth-chart line {
+    stroke: #dddddd !important;
+  }
+
+  #svg-growth-chart path[stroke="#ffffff"] {
+    stroke: #000000 !important;
+    stroke-width: 2px !important;
+  }
+
+  #svg-growth-chart path[fill^="rgba"] {
+    fill: #f5f5f5 !important;
+  }
+
+  #svg-growth-chart circle {
+    fill: #ffffff !important;
+    stroke: #000000 !important;
+    stroke-width: 1.5px !important;
+  }
+
+  #svg-growth-chart text {
+    fill: #000000 !important;
+    font-weight: bold !important;
+  }
+
+  /* Elegant print headings */
+  #projection-results-block label {
+    font-size: 11px !important;
+    font-weight: bold !important;
+    letter-spacing: 0.1em !important;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 2px;
+    margin-bottom: 8px;
+    display: inline-block;
+  }
+
+  /* Layout print adjustments to avoid layout breakages */
+  #stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 15px !important;
+  }
+
+  #stats-grid > div {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    border: 1px solid #000000 !important;
+    padding: 12px !important;
+  }
+
+  #breakdown-charts-layout {
+    display: grid !important;
+    grid-template-columns: repeat(12, 1fr) !important;
+    gap: 15px !important;
+    margin-top: 25px !important;
+  }
+
+  #chart-section {
+    grid-column: span 7 / span 7 !important;
+    border: 1px solid #000000 !important;
+    padding: 12px !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  #breakdown-table-section {
+    grid-column: span 5 / span 5 !important;
+    border: 1px solid #000000 !important;
+    padding: 12px !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  #financial-advice-card {
+    border: 1px solid #000000 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    background: #fafafa !important;
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+  }
+}
